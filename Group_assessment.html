@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faculty of Business, Economics & Law — Assessment Guidelines</title>
+  <!-- Type -->
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+  /* =========================================================
+  UQ BEL - Theme Tokens
+  ========================================================= */
+  :root {
+  /* UQ masterbrand foundation */
+  --uq-purple: #51247A; /* Primary */
+  --uq-gold: #FDB71A; /* Accent (sparingly) */
+  --uq-ink: #1A1A1A; /* Body text */
+  --uq-stone: #6A6A6A; /* Muted text */
+  --uq-cloud: #F5F3F7; /* Light panels */
+  --uq-white: #FFFFFF;
+  /* BEL-focused refinements */
+  --bel-divider: #E5E1EC; /* Subtle borders */
+  --bel-hover: #3E1C5C; /* Darker purple hover */
+  --bel-link: #2C3E50; /* Neutral link colour */
+  --bel-success: #0B7D56; /* Success */
+  --bel-warning: #C77D0A; /* Corporate warning tone */
+  /* Component tokens */
+  --page-bg: linear-gradient(180deg, #FFFFFF 0%, #FAFAFC 100%);
+  --hero-bg: linear-gradient(135deg, var(--uq-purple) 0%, #3E1C5C 100%);
+  --panel-shadow: 0 4px 18px rgba(81, 36, 122, 0.10);
+  }
+  /* =========================================================
+  Base
+  ========================================================= */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--uq-ink);
+  background: var(--page-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+  }
+  a { color: var(--bel-link); text-decoration: none; }
+  a:hover { color: var(--uq-purple); text-decoration: underline; }
+  /* =========================================================
+  UQ Masthead (Global)
+  ========================================================= */
+  .uq-masthead { background: var(--uq-white); border-bottom: 1px solid var(--bel-divider); }
+  .uq-masthead__inner {
+  max-width: 1400px; margin: 0 auto; padding: .75rem 2rem;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem;
+  }
+  .uq-logo { display: inline-flex; align-items: center; }
+  .uq-logo img, .uq-logo svg { height: 36px; width: auto; display: block; }
+  .uq-site-id { display:flex; flex-direction: column; line-height: 1.2; }
+  .uq-site-id__faculty { font-weight: 700; color: var(--uq-purple); }
+  .uq-site-id__hub { font-weight: 500; color: var(--uq-ink); opacity: .9; }
+  .uq-utility a { margin-left: 1rem; font-size: .95rem; color: var(--bel-link); }
+  .uq-utility a:hover { color: var(--uq-purple); text-decoration: underline; }
+  @media (max-width: 768px) {
+  .uq-masthead__inner { grid-template-columns: 1fr; gap: .5rem; }
+  .uq-utility { display:flex; flex-wrap:wrap; gap:.75rem; }
+  .uq-utility a { margin-left: 0; }
+  }
+  /* =========================================================
+  Hero
+  ========================================================= */
+  .hero-header {
+  background: var(--hero-bg); color: var(--uq-white);
+  padding: 4rem 2rem 3rem; text-align: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 28px rgba(81, 36, 122, .18);
+  }
+  .hero-header::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+  radial-gradient(circle at 20% 50%, rgba(253, 183, 26, 0.12) 0%, transparent 50%),
+  radial-gradient(circle at 80% 80%, rgba(81, 36, 122, 0.18) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-14px)} }
+  .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+  .hero-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em;
+  animation: fadeInUp .8s ease-out;
+  }
+  .hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400; opacity: .95;
+  max-width: 800px; margin: 0 auto 2rem; animation: fadeInUp .8s ease-out .2s both;
+  }
+  .hero-badge {
+  display: inline-block; background: rgba(253, 183, 26, .18);
+  color: var(--uq-gold); padding: .5rem 1.5rem; border-radius: 2rem;
+  font-size: .9rem; font-weight: 600; margin-bottom: 1.5rem;
+  border: 2px solid rgba(253, 183, 26, .28); animation: fadeInUp .8s ease-out .4s both;
+  }
+  @keyframes fadeInUp { from {opacity:0; transform: translateY(30px);} to {opacity:1; transform: translateY(0);} }
+  /* ✅ FIX: Make all mailto links in the hero high contrast (no class needed) */
+  .hero-header a[href^="mailto:"] {
+  color: var(--uq-gold);
+  text-decoration: underline;
+  font-weight: 700;
+  }
+  .hero-header a[href^="mailto:"]:hover,
+  .hero-header a[href^="mailto:"]:focus {
+  color: var(--uq-white);
+  text-decoration: underline;
+  }
+  /* =========================================================
+  Layout containers
+  ========================================================= */
+  .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+  .quick-links {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+  margin: -3rem auto 3rem; position: relative; z-index: 2; max-width: 1200px; padding: 0 2rem;
+  }
+  /* =========================================================
+  Cards & Links
+  ========================================================= */
+  .quick-link-card {
+  background: var(--uq-white); border-radius: 16px; padding: 2rem; text-decoration: none;
+  color: var(--uq-ink); box-shadow: var(--panel-shadow);
+  transition: all .3s ease; border: 1px solid var(--bel-divider); position: relative; overflow: hidden;
+  }
+  .quick-link-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--uq-purple); transform: scaleY(0); transition: transform .3s ease; transform-origin: bottom;
+  }
+  .quick-link-card:hover { transform: translateY(-6px); border-color: var(--uq-purple); box-shadow: 0 12px 30px rgba(81,36,122,.14); }
+  .quick-link-card:hover::before { transform: scaleY(1); transform-origin: top; }
+  .quick-link-icon { font-size: 2.2rem; margin-bottom: .75rem; display: block; }
+  .quick-link-title { font-family: 'Crimson Pro', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .35rem; color: var(--uq-purple); }
+  .quick-link-desc { font-size: .95rem; color: var(--uq-stone); line-height: 1.5; }
+  .section {
+  background: var(--uq-white); border-radius: 20px; padding: 3rem; margin-bottom: 2rem;
+  box-shadow: var(--panel-shadow); border: 1px solid var(--bel-divider); animation: fadeIn .6s ease-out;
+  }
+  @keyframes fadeIn { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+  .section-header {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.25rem;
+  border-bottom: 3px solid var(--uq-cloud);
+  }
+  .section-icon { font-size: 2.2rem; flex-shrink: 0; }
+  .section-title { font-family: 'Crimson Pro', serif; font-size: 2.1rem; font-weight: 700; color: var(--uq-purple); letter-spacing: -0.01em; }
+  .section-subtitle { font-size: 1.1rem; color: var(--uq-stone); margin-top: .25rem; }
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .resource-card {
+  background: var(--uq-cloud); padding: 1.8rem; border-radius: 12px; transition: all .3s ease;
+  border: 1px solid var(--bel-divider); position: relative;
+  }
+  .resource-card:hover { background: var(--uq-white); border-color: var(--uq-purple); transform: translateX(6px); box-shadow: 0 8px 22px rgba(81,36,122,.14); }
+  .resource-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.35rem; color: var(--uq-purple); margin-bottom: .7rem; font-weight: 700; }
+  .resource-card p { color: var(--uq-ink); font-size: .95rem; line-height: 1.6; margin-bottom: 1rem; }
+  .resource-links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1rem; }
+  .resource-link {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem;
+  background: var(--uq-white); color: var(--uq-purple) !important; border-radius: 8px; font-size: .9rem; font-weight: 600;
+  transition: all .2s ease; border: 2px solid var(--uq-purple);
+  }
+  .resource-link:hover { background: var(--uq-purple); color: var(--uq-white) !important; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(81,36,122,.18); }
+  /* ✅ Global fix: indent unordered lists inside highlight boxes */
+  .highlight-box ul {
+  margin-left: 1.5rem;
+  }
+  .highlight-box {
+  background: linear-gradient(135deg, rgba(253, 183, 26, 0.10) 0%, rgba(81, 36, 122, 0.10) 100%);
+  border-left: 5px solid var(--uq-gold);
+  padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;
+  }
+  .highlight-box h4 { font-family: 'Crimson Pro', serif; font-size: 1.25rem; color: var(--uq-purple); margin-bottom: .8rem; font-weight: 700; }
+  .tag {
+  display: inline-block; background: var(--uq-purple); color: var(--uq-white);
+  padding: .3rem .8rem; border-radius: 6px; font-size: .85rem; font-weight: 600; margin: .25rem;
+  }
+  .tag.new { background: var(--bel-success); }
+  .tag.important { background: var(--uq-gold); color: #3A2A00; }
+  .tag.ai { background: var(--uq-purple); }
+  .info-pill {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .4rem 1rem;
+  background: rgba(81,36,122,.08); color: var(--uq-purple); border-radius: 20px; font-size: .9rem; font-weight: 600;
+  margin: .5rem .5rem .5rem 0; border: 1px solid rgba(81,36,122,.20);
+  }
+  .accordion { border: 1px solid var(--bel-divider); border-radius: 12px; overflow: hidden; margin: 1rem 0; }
+  .accordion-item { border-bottom: 1px solid var(--bel-divider); }
+  .accordion-item:last-child { border-bottom: none; }
+  .accordion-header {
+  background: var(--uq-cloud); padding: 1.25rem 1.5rem; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; transition: all .3s ease;
+  font-weight: 600; font-size: 1.05rem; color: var(--uq-purple);
+  }
+  .accordion-header:hover { background: rgba(81,36,122,.08); }
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height .3s ease; background: var(--uq-white); }
+  .accordion-content.active { max-height: 2000px; }
+  .accordion-body { padding: 1.5rem; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: .8rem 0 .8rem 2rem; position: relative; border-bottom: 1px solid var(--bel-divider); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--bel-success); font-weight: bold; font-size: 1.2rem; }
+  .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+  @media (max-width: 968px) { .two-column { grid-template-columns: 1fr; } }
+  .contact-section {
+  background: var(--hero-bg); color: var(--uq-white); padding: 3rem; border-radius: 20px; margin-top: 3rem; text-align: center;
+  }
+  .contact-section h2 { font-family: 'Crimson Pro', serif; font-size: 2.3rem; margin-bottom: 1rem; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .contact-card {
+  background: rgba(255,255,255,.10); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,.20);
+  }
+  .contact-card h3 { font-size: 1.25rem; margin-bottom: .8rem; }
+  .contact-card a { color: var(--uq-gold); text-decoration: none; font-weight: 600; }
+  .contact-card a:hover { color: var(--uq-white); text-decoration: underline; }
+  .last-updated {
+  text-align: center; color: var(--uq-stone); font-size: .9rem; margin: 3rem 0 1rem; font-style: italic;
+  }
+  .sr-only { position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
+  @media (max-width: 768px) {
+  .hero-header { padding: 3rem 1rem 2rem; }
+  .section { padding: 2rem 1.5rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+  }
+  /* =========================================================
+  Optional BEL quick band (if desired)
+  ========================================================= */
+  .bel-band { background: var(--uq-purple); }
+  .bel-band__inner { max-width: 1200px; margin: 0 auto; padding: .6rem 2rem; display:flex; flex-wrap:wrap; gap:1rem; }
+  .bel-band__inner a { color: var(--uq-white); font-weight: 600; opacity:.95; }
+  .bel-band__inner a:hover { opacity: 1; text-decoration: underline; }
+  /* =========================================================
+  UQ Footer
+  ========================================================= */
+  .uq-footer { background: #111; color: #EEE; margin-top: 3rem; }
+  .uq-footer__inner { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+  .uq-ack { font-size: .95rem; opacity: .9; margin-bottom: 1rem; }
+  .uq-footer-nav { display:flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin: 1rem 0; }
+  .uq-footer-nav a { color: #EEE; text-decoration: none; font-size: .95rem; }
+  .uq-footer-nav a:hover { color: var(--uq-gold); }
+  .uq-meta { font-size: .9rem; opacity: .8; }
+  /* Arrow icon for <details> summary */
+  details.ap-accordion > summary::after {
+  content: "▶";
+  font-size: 1rem;
+  float: right;
+  transition: transform 0.2s ease;
+  color: var(--uq-purple);
+  }
+  details.ap-accordion[open] > summary::after {
+  transform: rotate(90deg);
+  }
+  /* Link states (global) */
+  a:link { color: #51247A; }
+  a:visited { color: #551A8B; }
+  a:hover, a:focus { color: #6A3BAE; text-decoration: underline; }
+  a:active { color: #51247A; }
+  /* Back-to-top link (inline links inside panels) */
+  .back-to-top {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-weight: 600; color: var(--uq-purple);
+  margin-top: 1rem;
+  }
+  .back-to-top:hover { color: var(--bel-hover); }
+  .back-to-top::before { content: "↑"; font-weight: 700; }
+  /* ===== Floating Back to Top Button ===== */
+  #floating-back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--uq-purple);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 16px rgba(81,36,122,0.25);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+  }
+  #floating-back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  }
+  #floating-back-to-top:hover { background: var(--bel-hover); }
+  #floating-back-to-top:focus {
+  outline: 3px solid var(--uq-gold);
+  outline-offset: 3px;
+  }
+  .resource-link1 {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem;
+  background: var(--uq-white); color: var(--uq-purple); border-radius: 8px; font-size: .9rem; font-weight: 600;
+  transition: all .2s ease; border: 2px solid var(--uq-purple);
+  }
+  .resource-links1 { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1rem; }
+  /* --- Support section fixes --- */
+  .contact-section .resource-links { justify-content: center; }
+  /* Ensure the button label remains visible even after the link is selected (visited/active) */
+  .contact-section a.resource-link,
+  .contact-section a.resource-link:link,
+  .contact-section a.resource-link:visited {
+  color: var(--uq-purple);
+  }
+  .contact-section a.resource-link:hover,
+  .contact-section a.resource-link:focus,
+  .contact-section a.resource-link:active {
+  color: var(--uq-white);
+  }
+  /* Yellow support button (UQ gold) */
+  .contact-section .resource-link {
+  background: var(--uq-gold) !important;
+  color: #3A2A00 !important; /* dark text for contrast on gold */
+  border-color: var(--uq-gold) !important;
+  }
+  .contact-section .resource-link:hover,
+  .contact-section .resource-link:focus {
+  background: #E6A800 !important; /* darker gold on hover */
+  color: #3A2A00 !important;
+  }
+  .contact-section .resource-link:hover,
+  .contact-section .resource-link:focus {
+  background: var(--bel-hover) !important;
+  color: var(--uq-white) !important;
+  }
+   p.indented {
+  margin-left: 1.5em; /* whole paragraph moves right */
+  }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-60ZZ4GH20Y"></script>
+  <script>
+  window.dataLayer = window.dataLayer
+
+  [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-60ZZ4GH20Y');
+  </script>
+</head>
+<body>
+  <div id="top" class="sr-only" aria-hidden="true">Top</div>
+
+  <!-- UQ Global Masthead -->
+  <header class="uq-masthead" aria-label="UQ masthead">
+    <div class="uq-masthead__inner">
+      <a class="uq-logo" href="https://www.uq.edu.au" aria-label="The University of Queensland">
+        <!-- Replace with approved DAM asset if available -->
+        <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false">
+          <rect width="36" height="36" rx="6" fill="#51247A"></rect>
+        </svg>
+      </a>
+      <div class="uq-site-id">
+        <span class="uq-site-id__faculty">Faculty of Business, Economics & Law</span>
+        <span class="uq-site-id__hub">Interactive Oral Assessments (IOAs)</span>
+      </div>
+      <nav class="uq-utility" aria-label="Utility">
+        <a href="#support">Contact</a>
+        <a href="https://bel.uq.edu.au" target="_blank" rel="noopener">BEL website</a>
+        <a href="https://about.uq.edu.au/faculties-institutes/bel" target="_blank" rel="noopener">&nbsp;</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <header class="hero-header">
+    <div class="hero-content">
+      <div class="hero-badge">BEL
+        Teaching & Learning</div>
+      <h1 class="hero-title">Group Assessment Guidelines</h1>
+      <p class="hero-subtitle">Designing valid and authentic group assessment — July 2026</p>
+      <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1rem 1.5rem; border-radius: 14px; margin: 1.25rem auto 0; max-width: 880px; border: 2px solid rgba(255,255,255,0.2);">
+        <p style="margin:0">An IOA is an unscripted, two‑way conversation between an assessor and student(s) — often linked to an authentic scenario or artefact — guided by semi‑structured questions.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Overview -->
+    <section class="section" aria-labelledby="overview-title">
+      <div class="section-header">
+        <span class="section-icon">🧭</span>
+        <div>
+          <h2 id="overview-title" class="section-title">Process & Product</h2>
+          <p class="section-subtitle">What IOAs are and why they matter</p>
+        </div>
+      </div>
+      <p style="margin-bottom:1rem">Group or Team assessment provide many opportunities for students to learn through authentic experiences and develop their employability skills. However, Group assessment can present challenges, particularly when students perceive uneven contributions across the group, such as ‘freeloaders’. </p>
+		<p>The real issue with the 'freeloader' problem is not group assessment per se but specifically the design of the task. Well-designed group assessment can help mitigate these issues by promoting clear expectations, shared accountability, and meaningful participation from all team members. Designing effective group assessments requires focusing on both the process (collaboration) and the product (final output) to mitigate freeloading.</p>
+      <p style="margin-bottom:1rem">&nbsp;</p>
+<div class="highlight-box">
+    <h4>🛠️ Resources &amp; Tools</h4>
+    <p>Below are resources to help you with teaching effective 'team work' and designing group assessment which promotes accountabilty.</p>
+    </div>
+    </section>
+<div class="resource-grid">
+		 		    
+			  
+    </div>
+        <div class="resource-card">
+          <h3>Working in a team</h3>
+          <p>This PowerPoint presentation serves as an introduction to effective team work for students, covering planning & organisation, teamwork, communication, problem-solving and conflict resolution.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="resources/Working_in_a_team.pptx" target="_blank" rel="noopener">🟧 PowerPoint</a>
+		              </div>(Check your download folder)
+    </div>
+
+        <div class="resource-card">
+          <h3>Conflict resolution&nbsp;</h3>
+          <p>A simple student friendly guide which   could be embedded in the relevant assessment task folder on Blackboard. </p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://uq.h5p.com/content/1292929332948709609" target="_blank" rel="noopener">💻H5P</a>
+          </div>
+    </div>
+
+        <div class="resource-card">
+          <h3>Designing Group Assessment for Collaboration and Accountability</h3>
+          <p>A guide for Course Coordinators on designing effective group assessment tasks.&nbsp;</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://uq.h5p.com/content/1292914558290871759" target="_blank" rel="noopener">💻H5P</a>
+          </div>
+    </div>        
+</div>
+    <!-- Designing IOAs -->
+  
+        <!-- 1 -->
+        
+
+        <!-- ===== Assessment Principles (Stacked full-width, numbered circles, back-to-top) ===== -->
+        <!-- Scoped styles for numbered circles and stacked layout -->
+        <style>
+        /* ===== Stacked full-width list with visible purple number circles ===== */
+        ol.ap-ol { list-style: none; padding: 0; margin: 0; counter-reset: ap-counter; }
+        ol.ap-ol > li {
+          counter-increment: ap-counter;
+          display: grid;
+          grid-template-columns: 40px 1fr; /* number circle + card */
+          gap: 12px;
+          align-items: start;
+          margin-bottom: 1.25rem;
+          width: 100%;
+        }
+        /* Purple circular number badge */
+        ol.ap-ol > li::before {
+          content: counter(ap-counter);
+          width: 36px;
+          height: 36px;
+          min-width: 36px;
+          border-radius: 50%;
+          background: var(--uq-purple);
+          color: var(--uq-white);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          line-height: 1;
+          margin-top: 4px; /* aligns top with card header */
+          box-shadow: 0 2px 6px rgba(81,36,122,.18);
+        }
+        details.ap-accordion {
+          width: 100%;
+          border: 1px solid var(--bel-divider);
+          border-radius: 12px;
+          background: #fff;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        details.ap-accordion > summary {
+          padding: 14px 18px;
+          font-weight: 700;
+          background: var(--uq-cloud);
+          color: var(--uq-purple);
+          cursor: pointer;
+          border-radius: 12px;
+          list-style: none;
+        }
+        details.ap-accordion[open] > summary {
+          border-bottom: 1px solid var(--bel-divider);
+          border-radius: 12px 12px 0 0;
+        }
+        .ap-panel { padding: 1rem 1.2rem; overflow-x: auto; }
+        .ap-panel table { width: 100%; border-collapse: collapse; min-width: 520px; }
+        .ap-panel th, .ap-panel td { border: 1px solid #ddd; padding: 10px; vertical-align: top; text-align: left; }
+        .uq-header { background: #4B2577; color: #fff; font-weight: 700; }
+        </style>
+
+      </div>
+    </section>
+
+    <!-- Semi-structured questions -->
+    
+
+    <!-- Example rubric-aligned table -->
+   
+
+    <!-- Security & Scheduling -->
+    
+
+   
+
+    <!-- Contact / Support -->
+    <section id="support" class="contact-section">
+      <h2>Get Support & Stay Connected</h2>
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(255,255,255,0.2);">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Assessment Support</h3>
+        <p style="margin-bottom: 1rem; opacity: .95;">Connect with our specialist learning designers, Dr Chloe Salisbury and Mr Paul Boyling, to discuss redesigning assessment for AI or implementing secure assessment strategies.</p>
+        <div class="resource-links" style="margin-top: 1rem;">
+          <a href="mailto:chloe.salisbury@uq.edu.au; p.boyling@uq.edu.au" class="resource-link" >
+      <span>💡</span> Chloe &amp; Paul</a>
+        </div>
+      </div>
+      <div class="contact-grid"></div>
+    </section>
+
+    <!-- ✅ Added button (near bottom) — uses existing styles only -->
+    <div class="resource-links" style="justify-content:center; margin-top: 1.5rem;">
+      <a class="resource-link" href="index.html">
+        <span aria-hidden="true">←</span> Back to BEL Assessment Hub
+      </a>
+    </div>
+
+    <div style="text-align:center; color:var(--uq-stone); font-size:.92rem; margin:2rem 0 .5rem; font-style:italic;">
+      Last updated: 12 February 2026
+    </div>
+
+  </div>
+
+  <!-- UQ Footer -->
+  <footer class="uq-footer" role="contentinfo">
+    <div class="uq-footer__inner">
+      <section class="uq-ack">
+        <h2 class="sr-only">Acknowledgement of Country</h2>
+        <p>The University of Queensland acknowledges the Traditional Owners and their custodianship of the lands on which UQ is situated.</p>
+      </section>
+      <nav class="uq-footer-nav" aria-label="Footer">
+        <a href="https://bel.uq.edu.au" target="_blank" rel="noopener">BEL website</a>
+        <a href="https://about.uq.edu.au/faculties-institutes/bel" target="_blank" rel="noopener">About BEL</a>
+        <a href="https://www.uq.edu.au/privacy" target="_blank" rel="noopener">Privacy</a>
+        <a href="#support">Contact</a>
+      </nav>
+      <div class="uq-meta">
+        <p>© The University of Queensland. CRICOS Provider Number 00025B.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating back-to-top -->
+  <div id="floating-back-to-top" role="button" aria-label="Back to top">↑ Back to top</div>
+
+<script>
+  // Smooth scroll for anchors
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const id = a.getAttribute('href');
+    if(id && id.length > 1){
+      const el = document.querySelector(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+  });
+  // Floating back-to-top visibility
+  const btn = document.getElementById('floating-back-to-top');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 400){ btn.classList.add('visible'); } else { btn.classList.remove('visible'); }
+  });
+  btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity='1';
+        entry.target.style.transform='translateY(0)';
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.section').forEach(el=>{
+    el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity .6s, transform .6s';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
